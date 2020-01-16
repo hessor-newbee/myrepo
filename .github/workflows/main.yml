@@ -21,10 +21,10 @@ jobs:
       key: Values
     steps:
       - name: Print job env
-        run: echo "Job level var is $ {{ env.key }}"
+        run: echo "Job level var is ${{ env.key }}"
+      - name: Print step env
         env: 
           lol: LOL
-      - name: Print step env
         run: echo "Step env var is $lol"
       - name: Add repo
         uses: actions/checkout@v1
