@@ -14,3 +14,19 @@ jobs:
       run: echo "Hello, World!"
     - name: Print env vars
       run: echo "Var1 is ${{ env.VAR1 }}"
+  my_test2:
+    runs-on: [ubuntu-18.04]
+    needs: [my_test1]
+    env:
+      key: Values
+    steps:
+      - name: Print job env
+        run: echo "Job level var is $ {{ env.key }}"
+        env: 
+          lol: LOL
+      - name: Print step env
+        run: echo "Step env var is $lol"
+      - name: Add repo
+        uses: actions/checkout@v1
+      - name: List file
+        run: ls -la
