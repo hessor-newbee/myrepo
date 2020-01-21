@@ -42,8 +42,8 @@ jobs:
       run: |
         aws elasticbeanstalk create-application-version \
         --aplication-name ${{ env.EB_APPLICATION_NAME }} \
-        --source-bundle="${{ env.AWS_PACKAGE_S3_BUCKET_NAME }}", S3Key="${{ env.DEPLOY_PACKAGE }}" 
-        --version-label="Version - ${{ github.sha }}"
+        --source-bundle="${{ env.AWS_PACKAGE_S3_BUCKET_NAME }}", S3Key="${{ env.DEPLOY_PACKAGE }}" \ 
+        --version-label="Version - ${{ github.sha }}" \
         --description="CommitSHA - ${{ github.sha }}"
     - name: Update EN app env
       run: aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-label "Version - ${{ github.sha}}"        
