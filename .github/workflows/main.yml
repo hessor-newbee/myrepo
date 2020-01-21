@@ -4,7 +4,7 @@ env:
   EB_APPLICATION_NAME: "FlaskApp"
   EB_ENVIRONMENT_NAME: "Flaskapp-env"
   AWS_REGION: "us-east-2"
-  DEPLOY_PACKAGE: "flask-app-${{ github.sha }}"
+  DEPLOY_PACKAGE: "flask-app-${{ github.sha }}.zip"
 on:
   push:
     branches:
@@ -29,6 +29,7 @@ jobs:
       run: echo "Success! CI part has finished."
 
   my_cd_part:
+    needs: [my_ci_part]
     runs-on: ubuntu-latest
     steps:
     - name: Configure access to AWS 
